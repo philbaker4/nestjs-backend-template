@@ -1,0 +1,15 @@
+
+Create ormconfig.json in root dir: 
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "root",
+  "database": "itemdemo",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "synchronize": true
+}
+
+
+Create db schema and replace database ^ with name of db schema
