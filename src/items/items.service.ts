@@ -1,29 +1,35 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Item } from './item.model';
+import { Item } from './entity/item.entity';
 import { CreateItemDto } from './dto/create-item';
+import { ItemRepository } from './repository/item.repository';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ItemsService {
-  private readonly items: Item[] = [];
+    
+    constructor(
+        @InjectRepository(ItemRepository) 
+        private itemRepository: ItemRepository,
+    ) {}
 
-    findAll(): Item[] {
-        return this.items;
+    async getAllItems(): Promise<Item[]> {
+        const query = this.itemRepository.createQueryBuilder('item');
+        const items = await query.getMany();
+        return items;
     }
 
-    find(name: string): Item {
-        const found = this.items.find(item => item.name === name);
+    async find(id: number): Promise<Item> {
+        const found = await this.itemRepository.findOne(id);
+
         if (!found) {
-            throw new NotFoundException(`Item with name ${name} not found.`);
+            throw new NotFoundException(`Item with id ${id} not found.`);
         }
+
         return found;
     }
 
-
-    create(item: CreateItemDto): Item {
-        const newItem: Item = {
-            name: item.name,
-        };
-        this.items.push(newItem);
-        return newItem;
+    async create(createItemDto: CreateItemDto): Promise<Item> {
+        return this.itemRepository.createItem(createItemDto);
     }
+
 }
