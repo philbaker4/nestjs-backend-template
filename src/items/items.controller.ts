@@ -1,7 +1,9 @@
-import { Get, Post, Body, Controller } from '@nestjs/common';
+import { Get, Post, Body, Controller, Param, ValidationPipe, UsePipes } from '@nestjs/common';
 import { ItemsService } from './items.service';
-import { CreateItemDTO } from './dto/create-item';
+import { CreateItemDto } from './dto/create-item';
 import { Item } from './item.model';
+
+
 @Controller('items')
 export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
@@ -11,8 +13,14 @@ export class ItemsController {
     return this.itemsService.findAll();
   }
 
+  @Get('/:name')
+  findItem(@Param('name') name: string): Item {
+      return this.itemsService.find(name)
+  }
+
+  @UsePipes(ValidationPipe)
   @Post()
-  async create(@Body() item: CreateItemDTO) {
+  async create(@Body() item: CreateItemDto) {
     return this.itemsService.create(item);
   }
 }
