@@ -13,3 +13,8 @@ Create ormconfig.json in root dir:
 
 
 Create db schema and replace database ^ with name of db schema
+
+
+.env :
+DOMAIN= auth0 domain 
+AUDIENCE= audience used in auth
