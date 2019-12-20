@@ -3,9 +3,11 @@ import { ItemsModule } from './items/items.module';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
-  imports: [ItemsModule, TypeOrmModule.forRoot({
+  imports: [
+    ItemsModule,
+    TypeOrmModule.forRoot(),
 
-  })],
+  ],
   controllers: [],
   providers: [],
 })
