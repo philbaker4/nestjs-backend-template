@@ -13,19 +13,11 @@ export class ItemsService {
     ) {}
 
     async getAllItems(): Promise<Item[]> {
-        const query = this.itemRepository.createQueryBuilder('item');
-        const items = await query.getMany();
-        return items;
+        return this.itemRepository.getItems();
     }
 
     async find(id: number): Promise<Item> {
-        const found = await this.itemRepository.findOne(id);
-
-        if (!found) {
-            throw new NotFoundException(`Item with id ${id} not found.`);
-        }
-
-        return found;
+       return this.itemRepository.findItem(id);
     }
 
     async create(createItemDto: CreateItemDto): Promise<Item> {
