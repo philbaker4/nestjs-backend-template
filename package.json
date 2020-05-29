@@ -4,9 +4,15 @@
   "description": "",
   "author": "",
   "license": "MIT",
+  "main": "dist/src/main.js",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build:nest": "nest build",
+    "gcp-build": "npm run build",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch  NODE_ENV=development",
@@ -17,7 +23,11 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm",
+    "typeorm:sync": "npm typeorm schema:sync",
+    "typeorm:drop": "npm typeorm schema:drop",
+    "typeorm:reset": "npm typeorm:drop && yarn typeorm:sync"
   },
   "dependencies": {
     "@nestjs/common": "^6.7.2",
