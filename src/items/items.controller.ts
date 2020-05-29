@@ -2,11 +2,11 @@ import { Get, Post, Body, Controller, Param, ValidationPipe, UsePipes, ParseIntP
 import { ItemsService } from './items.service';
 import { CreateItemDto } from './dto/create-item';
 import { Item } from './entity/item.entity';
-import { GetUser } from 'src/auth/get-user.decorator';
-import { Roles } from 'src/auth/roles.decorator';
-import { RolesGuard } from 'src/auth/roles.guard';
-import { Permissions } from 'src/auth/permissions.decorator';
-import { PermissionsGuard } from 'src/auth/permissions.guard';
+import { GetUser } from '@/auth/get-user.decorator';
+import { Roles } from '@/auth/roles.decorator';
+import { RolesGuard } from '@/auth/roles.guard';
+import { Permissions } from '@/auth/permissions.decorator';
+import { PermissionsGuard } from '@/auth/permissions.guard';
 
 @Controller('items')
 export class ItemsController {

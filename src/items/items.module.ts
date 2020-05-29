@@ -3,7 +3,7 @@ import { ItemsController } from './items.controller';
 import { ItemsService } from './items.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ItemRepository } from './repository/item.repository';
-import { AuthenticationMiddleware } from 'src/auth/authentication.middleware';
+import { AuthenticationMiddleware } from '@/auth/authentication.middleware';
 @Module({
     imports: [
         TypeOrmModule.forFeature([ItemRepository]),
