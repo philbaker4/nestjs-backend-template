@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
  }
 //  Dev cloud DB
 //  else if (process.env.NODE_ENV === 'development') {
-//    ormConfig.host = '34.67.162.248'
+//    ormConfig.host = process.env.CLOUD_SQL_HOST
 //    ormConfig.socketPath = `/cloudsql/${process.env.CLOUD_SQL_CONNECTION_NAME}`
 //  }
 
