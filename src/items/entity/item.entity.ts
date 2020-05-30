@@ -8,4 +8,7 @@ export class Item extends BaseEntity {
 
     @Column()
     name: string;
+
+    @Column()
+    test: string;
 }

@@ -1,14 +1,18 @@
-
+import { Item } from "@/items/entity/item.entity";
 require('dotenv').config();
 const ormConfig = {
     "type": "mysql",
     "port": 3306,
     "migrationsTableName": "custom_migration_table",
-    "migrations": ["dist/migrations/*.js"],
-    "cli": {
-       " migrationsDir": "migrations"
+    migrations: [
+        'dist/src/migrations/*.js',
+    ],
+    cli: {
+        migrationsDir: 'src/migrations',
     },
-
+    entities: [
+        Item
+    ],
    username: process.env.DB_USERNAME,
    password: process.env.DB_PASSWORD,
    database: process.env.DB_NAME,
