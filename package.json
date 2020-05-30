@@ -25,9 +25,11 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm",
-    "typeorm:sync": "npm typeorm schema:sync",
-    "typeorm:drop": "npm typeorm schema:drop",
-    "typeorm:reset": "npm typeorm:drop && yarn typeorm:sync"
+    "typeorm:generate": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm --config ormconfig.ts  migration:generate -n ",
+    "typeorm:run": " npm run build && ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm --config ormconfig.ts  migration:run ",
+    "typeorm:sync": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm --config ormconfig.ts schema:sync",
+    "typeorm:drop": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm --config ormconfig.ts schema:drop",
+    "typeorm:reset": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm --config ormconfig.ts schema:drop && ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm --config ormconfig.ts schema:sync"
   },
   "dependencies": {
     "@nestjs/common": "^6.7.2",
@@ -59,7 +61,7 @@
     "supertest": "^4.0.2",
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.1.1",
-    "ts-node": "^8.4.1",
+    "ts-node": "^8.10.2",
     "tsconfig-paths": "^3.9.0",
     "tslint": "^5.20.0",
     "typescript": "^3.6.3"
@@ -76,9 +78,9 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node",
-    "_moduleAliases": {
-      "@": "dist/src"
-    }
+    "testEnvironment": "node"
+  },
+  "_moduleAliases": {
+    "@": "dist/src"
   }
 }
