@@ -1,7 +1,7 @@
 
 ## Description
 
-Starter repository for NestJS API with Auth0, TypeORM integrations
+Starter repository for NestJS API with Auth0, TypeORM integrations. Prepped for GCP App Engine Deployment
 
 ## Installation
 
